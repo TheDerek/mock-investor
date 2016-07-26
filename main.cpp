@@ -5,8 +5,6 @@
 
 int main()
 {
-    std::cout << "Hello, World!" << std::endl;
-
     // Create our trader
     Trader trader("Bob");
 
@@ -31,9 +29,6 @@ int main()
 
     // Bobs current net worth
     std::cout << "Bob net worth: " << trader.netWorth() << std::endl;
-
-
-
 
     return 0;
 }
