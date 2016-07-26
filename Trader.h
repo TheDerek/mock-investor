@@ -24,10 +24,16 @@ class Trader
         ~Trader();
 
         Stock& buy(Company &company, int32_t quantity);
+        void sell(Company &company, int32_t quantity);
+
+        Stock& getStock(Company &company);
+        bool owns(Company &company) const;
         long double netWorth() const;
         long double getCapital() const;
 
         class NotEnoughCapital: public std::exception {};
+        class DoesNotOwnStock: public std::exception {};
+        class DoesNotOwnEnoughStock: public std::exception {};
 };
 
 

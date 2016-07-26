@@ -23,7 +23,7 @@ long double Trader::netWorth() const
 Stock& Trader::buy(Company &company, int32_t quantity)
 {
     // Calculate the cost to buy the number of stocks
-    long double cost = quantity * company.getPrice();
+    long double cost = (long double) quantity * company.getPrice();
 
     // Throw an exception if the trader cannot afford the transaction
     if(cost > this->capital)
@@ -59,4 +59,38 @@ Trader::~Trader()
 long double Trader::getCapital() const
 {
     return capital;
+}
+
+void Trader::sell(Company &company, int32_t quantity)
+{
+    // Trader must own stock in that company
+    if(!owns(company))
+        throw DoesNotOwnStock();
+
+    auto stock = getStock(company);
+
+    // Trader must own the same or more than the amount of stock in the
+    // company for the quantity he is selling
+    if(quantity > stock.quantity)
+        throw DoesNotOwnEnoughStock();
+
+    // Refund the equity into the traders account
+    auto equity = stock.equity();
+    this->capital += equity;
+
+    // Remove the stock from the traders book
+    stocks.erase(company.symbol);
+}
+
+bool Trader::owns(Company &company) const
+{
+    return stocks.count(company.symbol) == 1;
+}
+
+Stock& Trader::getStock(Company &company)
+{
+    if(!owns(company))
+        throw DoesNotOwnStock();
+
+    return *stocks[company.symbol];
 }
