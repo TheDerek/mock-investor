@@ -23,7 +23,7 @@ long double Trader::netWorth() const
 Stock& Trader::buy(Company &company, int32_t quantity)
 {
     // Calculate the cost to buy the number of stocks
-    long double cost = (long double) quantity * company.getPrice();
+    long double cost = (long double) quantity * company.getAsk();
 
     // Throw an exception if the trader cannot afford the transaction
     if(cost > this->capital)

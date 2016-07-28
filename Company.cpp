@@ -6,6 +6,7 @@
 #include <curl/curl.h>
 
 #include "Company.h"
+#include "fast-cpp-csv-parser/csv.h"
 
 long double Company::getPrice() const
 {
@@ -43,6 +44,8 @@ Company Company::get(std::string symbol)
         if(res != CURLE_OK)
             fprintf(stderr, "curl_easy_perform() failed: %s\n",
                 curl_easy_strerror(res));
+
+        curl
 
         // Cleanup
         curl_easy_cleanup(curl);

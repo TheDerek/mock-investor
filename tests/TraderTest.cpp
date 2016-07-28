@@ -21,7 +21,7 @@ TEST_F (TraderTest, BuyStock) {
     // Have him buy some stock
     int32_t quantity = 9;
     auto stock = trader.buy(company, quantity);
-    long double stockValue = company.getPrice() * quantity;
+    long double stockValue = company.getAsk() * quantity;
 
     // Check that his net worth remains the same
     ASSERT_EQ(originalNetWorth, trader.netWorth());
@@ -37,7 +37,7 @@ TEST_F (TraderTest, SellStock) {
     // Have him buy some stock
     int32_t quantity = 10;
     auto stock = trader.buy(company, quantity);
-    long double stockValue = company.getPrice() * quantity;
+    long double stockValue = company.getAsk() * quantity;
 
     // Check that his capital has decreased the correct amount
     long double expectedCapital = originalCapital - stockValue;

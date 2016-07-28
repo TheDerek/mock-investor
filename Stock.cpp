@@ -6,5 +6,5 @@
 
 const long double Stock::equity()
 {
-    return (long double) quantity * company.getPrice();
+    return (long double) quantity * company.getBid();
 }
