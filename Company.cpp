@@ -2,12 +2,9 @@
 // Created by derek on 25/07/16.
 //
 
-#include <stdio.h>
-#include <curl/curl.h>
-#include <iostream>
+#include <sstream>
 
 #include "Company.h"
-#include "HTTPDownloader.h"
 #include "fast-cpp-csv-parser/csv.h"
 
 long double Company::getPrice() const
@@ -27,13 +24,26 @@ long double Company::getBid() const
 
 Company Company::get(std::string symbol)
 {
+    // Build the API call using user input
     std::string url = "http://download.finance.yahoo"
-            ".com/d/quotes.csv?s=AAPL&f=nl1ab";
+            ".com/d/quotes.csv?s=" + symbol + "&f=nl1ab";
 
+    // Download the content
     std::string content = Company::downloader.download(url);
-    std::cout << content << std::endl;
 
-    return Company("asd", "asd", 1);
+    // Setup CSV reader
+    std::istringstream str(content);
+    io::CSVReader<4, io::trim_chars<'"'>> reader("company.csv", str);
+    reader.set_header("name", "last", "ask", "bid");
+
+    // Read the CSV string we just downloaded
+    std::string name;
+    double long last, ask, bid;
+
+    while(reader.read_row(name, last, ask, bid))
+        return Company(symbol, name, last, ask, bid);
+
+    throw Company::NoCompanyFound();
 }
 
 void Company::setPrice(long double price)

@@ -5,8 +5,8 @@ class TraderTest : public ::testing::Test
 {
     public:
         Trader trader = Trader("Bob");
-        Company company = Company("Apple", "APPL", 97.34);
-        Company company2 = Company("Alphabet", "GOOG", 736.56);
+        Company company = Company("APPL", "Apple Inc.", 97.34);
+        Company company2 = Company("GOOG", "Alphabet", 736.56);
         const long double originalNetWorth;
         const long double originalCapital;
 
