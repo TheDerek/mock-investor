@@ -4,8 +4,10 @@
 
 #include <stdio.h>
 #include <curl/curl.h>
+#include <iostream>
 
 #include "Company.h"
+#include "HTTPDownloader.h"
 #include "fast-cpp-csv-parser/csv.h"
 
 long double Company::getPrice() const
@@ -25,35 +27,18 @@ long double Company::getBid() const
 
 Company Company::get(std::string symbol)
 {
-    // Setup curl variables
-    CURL *curl;
-    CURLcode res;
-    curl = curl_easy_init();
+    std::string url = "http://download.finance.yahoo"
+            ".com/d/quotes.csv?s=AAPL&f=nl1ab";
 
-    // Only run if curl loaded correctly
-    if(curl)
-    {
-        // Set curl options
-        curl_easy_setopt(curl, CURLOPT_URL, "https://download.finance.yahoo"
-            ".com/d/quotes.csv?s=AAPL&f=nl1ab");
+    std::string content = Company::downloader.download(url);
+    std::cout << content << std::endl;
 
-        // Perform the request, putting the HTTP status code in res
-        res = curl_easy_perform(curl);
-
-        // Throw error if resource didn't exist
-        if(res != CURLE_OK)
-            fprintf(stderr, "curl_easy_perform() failed: %s\n",
-                curl_easy_strerror(res));
-
-        curl
-
-        // Cleanup
-        curl_easy_cleanup(curl);
-        delete curl;
-    }
+    return Company("asd", "asd", 1);
 }
 
 void Company::setPrice(long double price)
 {
     this->price = price;
 }
+
+HTTPDownloader Company::downloader = HTTPDownloader();

@@ -6,6 +6,7 @@
 #define MOCK_INVESTOR_COMPANY_H
 
 #include <string>
+#include "HTTPDownloader.h"
 
 class Company
 {
@@ -13,9 +14,9 @@ class Company
         const long double ask;
         const long double bid;
         long double price;
-        
 
     public:
+        static HTTPDownloader downloader;
         const std::string name;
         const std::string symbol;
 
