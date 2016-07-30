@@ -51,4 +51,14 @@ void Company::setPrice(long double price)
     this->price = price;
 }
 
+void Company::setAsk(long double price)
+{
+    this->ask = price;
+}
+
+void Company::setBid(long double price)
+{
+    this->bid = price;
+}
+
 HTTPDownloader Company::downloader = HTTPDownloader();

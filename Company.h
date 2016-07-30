@@ -11,8 +11,8 @@
 class Company
 {
     private:
-        const long double ask;
-        const long double bid;
+        long double ask;
+        long double bid;
         long double price;
 
     public:
@@ -36,7 +36,10 @@ class Company
         /** Get the bid price of the stock. */
         long double getBid() const;
 
+
         void setPrice(long double price);
+        void setAsk(long double price);
+        void setBid(long double price);
 
         /** Get a company from its stock symbol. */
         static Company get(std::string symbol);

@@ -15,10 +15,11 @@ class Trader
 {
     private:
         long double capital;
-        const std::string name;
         std::unordered_map<std::string, Stock*> stocks;
 
     public:
+        const std::string name;
+
         Trader(std::string name, long double capital = 10000):
             name(name), capital(capital) {}
         ~Trader();
