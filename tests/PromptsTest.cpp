@@ -1,5 +1,5 @@
-#include "../googletest/googletest/include/gtest/gtest.h"
-#include "../prompts.h"
+#include "../libs/googletest/googletest/include/gtest/gtest.h"
+#include "../src/prompts.h"
 
 #include <istream>
 #include <ostream>

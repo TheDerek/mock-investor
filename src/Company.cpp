@@ -5,7 +5,8 @@
 #include <sstream>
 
 #include "Company.h"
-#include "fast-cpp-csv-parser/csv.h"
+#include "../libs/fast-cpp-csv-parser/csv.h"
+
 
 long double Company::getPrice() const
 {

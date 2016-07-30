@@ -1,5 +1,5 @@
-#include "../googletest/googletest/include/gtest/gtest.h"
-#include "../Trader.h"
+#include "../libs/googletest/googletest/include/gtest/gtest.h"
+#include "../src/Trader.h"
 
 class TraderTest : public ::testing::Test
 {
