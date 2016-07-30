@@ -12,11 +12,11 @@ set(SOURCE_FILES main.cpp Trader.cpp Trader.h Stock.cpp Stock.h Company.cpp
         Company.h fast-cpp-csv-parser/csv.h HTTPDownloader.cpp HTTPDownloader.h
         prompts.cpp prompts.h)
 add_executable(mock_investor ${SOURCE_FILES})
-target_link_libraries(mock_investor curl gtest)
+target_link_libraries(mock_investor curl gtest sqlite3)
 add_library(mockLib ${SOURCE_FILES})
 
 # Add test cpp file
 set(TEST_FILES tests/TraderTest.cpp tests/CompanyTest.cpp tests/PromptsTest.cpp)
 add_executable( runUnitTests ${TEST_FILES} )
-target_link_libraries(runUnitTests gtest gtest_main mockLib curl)
+target_link_libraries(runUnitTests gtest gtest_main mockLib curl sqlite3)
 add_test( runUnitTests runUnitTests )
