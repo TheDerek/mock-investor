@@ -5,16 +5,21 @@
 #ifndef MOCK_INVESTOR_DATABASE_H
 #define MOCK_INVESTOR_DATABASE_H
 
+#include <list>
+
+#include "Trader.h"
 
 class Database
 {
+    private:
+
     public:
-        static Database load(std::string path);
-        static Database create(std::string path);
+        Database(std::string);
+        std::string execute(std::string query);
 
         void saveTrader(Trader&);
         Trader getTrader(size_t id);
-        std::array<Trader> getTraders();
+        std::list<Trader> getTraders();
 
 };
 

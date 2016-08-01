@@ -12,6 +12,6 @@ TEST_F (PromptsTest, createTrader) {
     Trader trader = createTrader(std::cout, input);
     ASSERT_EQ("Joe", trader.name);
     ASSERT_EQ(30000, trader.getCapital());
-    std::cout << "\nName : " << trader.name << ", capital: " << trader
-        .getCapital() << std::endl;
+    std::cout << "\nName : " << trader.name << ", capital: "
+              << trader.getCapital() << std::endl;
 }
