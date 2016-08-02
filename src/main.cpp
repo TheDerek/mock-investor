@@ -18,6 +18,6 @@ int main()
 
     // Boot up mock investor
     cout << "Welcome to mock investor!" << endl;
-
+    
     return 0;
 }
