@@ -18,6 +18,12 @@ int main()
 
     // Boot up mock investor
     cout << "Welcome to mock investor!" << endl;
-    
+
+    std::ofstream outfile ("test.txt");
+
+    outfile << "my text here!" << std::endl;
+
+    outfile.close();
+
     return 0;
 }
